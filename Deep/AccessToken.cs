@@ -15,8 +15,8 @@ namespace Deep
     public partial class AccessToken
     {
         public int id { get; set; }
-        public int id_user { get; set; }
         public string access_token { get; set; }
         public string refresh_token { get; set; }
+        public System.DateTime last_refresh { get; set; }
     }
 }

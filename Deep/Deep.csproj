@@ -91,6 +91,7 @@
     <Compile Include="Answer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Auth\AuthBody.cs" />
     <Compile Include="Auth\AuthService.svc.cs">
       <DependentUpon>AuthService.svc</DependentUpon>
     </Compile>

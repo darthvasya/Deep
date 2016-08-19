@@ -12,5 +12,35 @@ namespace Deep.Auth
     public class AuthService : IAuthService
     {
         DeepEntities context = new DeepEntities();
+
+        public AuthBody Authorization(string username, string password, DateTime time)
+        {
+            AuthBody auth_body = new AuthBody();
+            try
+            {
+                User user = context.Users.Where(p => p.username == username).Where(p => p.password == password).FirstOrDefault();
+                if (user == null)
+                {
+                    auth_body.exception = "Incorrect username or password";
+                    auth_body.access = false;
+                    return auth_body;
+                }
+                else
+                {
+                    AccessToken token = context.AccessTokens.Where(p => p.id == user.id).FirstOrDefault();
+                    if (token == null)
+                    {
+                        
+                        
+                    }
+                    return auth_body;
+                }
+            }
+            catch(Exception ex)
+            {
+                auth_body.exception = ex.Message;
+                return auth_body;
+            }
+        }
     }
 }

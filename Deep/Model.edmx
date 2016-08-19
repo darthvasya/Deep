@@ -4,15 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DeepModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DeepModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccessTokens">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="access_token" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="refresh_token" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_refresh" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Answers">
           <Key>
@@ -79,19 +79,27 @@
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Variants" EntityType="Self.Variants" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DeepModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DeepEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccessTokens" EntityType="DeepModel.AccessToken" />
+          <EntitySet Name="Answers" EntityType="DeepModel.Answer" />
+          <EntitySet Name="Projects" EntityType="DeepModel.Project" />
+          <EntitySet Name="Questions" EntityType="DeepModel.Question" />
+          <EntitySet Name="Surveys" EntityType="DeepModel.Survey" />
+          <EntitySet Name="Users" EntityType="DeepModel.User" />
+          <EntitySet Name="Variants" EntityType="DeepModel.Variant" />
+        </EntityContainer>
         <EntityType Name="AccessToken">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_user" Type="Int32" Nullable="false" />
-          <Property Name="access_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="refresh_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="access_token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="refresh_token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="last_refresh" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="Answer">
           <Key>
@@ -107,7 +115,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date_register" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="id_owner" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -117,7 +125,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="question1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="question1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Survey">
           <Key>
@@ -125,9 +133,9 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_project" Type="Int32" Nullable="false" />
-          <Property Name="name_people" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name_people" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="age" Type="Int32" Nullable="false" />
-          <Property Name="profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="profession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
@@ -135,8 +143,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="secondname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date_register" Type="DateTime" Nullable="false" Precision="7" />
@@ -147,18 +155,9 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_question" Type="Int32" Nullable="false" />
-          <Property Name="variant1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="variant1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="DeepEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AccessTokens" EntityType="Self.AccessToken" />
-          <EntitySet Name="Answers" EntityType="Self.Answer" />
-          <EntitySet Name="Projects" EntityType="Self.Project" />
-          <EntitySet Name="Questions" EntityType="Self.Question" />
-          <EntitySet Name="Surveys" EntityType="Self.Survey" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Variants" EntityType="Self.Variant" />
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -167,72 +166,72 @@
           <EntitySetMapping Name="AccessTokens">
             <EntityTypeMapping TypeName="DeepModel.AccessToken">
               <MappingFragment StoreEntitySet="AccessTokens">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="access_token" ColumnName="access_token" />
+                <ScalarProperty Name="last_refresh" ColumnName="last_refresh" />
                 <ScalarProperty Name="refresh_token" ColumnName="refresh_token" />
+                <ScalarProperty Name="access_token" ColumnName="access_token" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Answers">
             <EntityTypeMapping TypeName="DeepModel.Answer">
               <MappingFragment StoreEntitySet="Answers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_survey" ColumnName="id_survey" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
                 <ScalarProperty Name="id_variant" ColumnName="id_variant" />
+                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="id_survey" ColumnName="id_survey" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="DeepModel.Project">
               <MappingFragment StoreEntitySet="Projects">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="date_register" ColumnName="date_register" />
-                <ScalarProperty Name="id_owner" ColumnName="id_owner" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id_owner" ColumnName="id_owner" />
+                <ScalarProperty Name="date_register" ColumnName="date_register" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="DeepModel.Question">
               <MappingFragment StoreEntitySet="Questions">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="question1" ColumnName="question" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Surveys">
             <EntityTypeMapping TypeName="DeepModel.Survey">
               <MappingFragment StoreEntitySet="Surveys">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_project" ColumnName="id_project" />
-                <ScalarProperty Name="name_people" ColumnName="name_people" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="profession" ColumnName="profession" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="profession" ColumnName="profession" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="name_people" ColumnName="name_people" />
+                <ScalarProperty Name="id_project" ColumnName="id_project" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DeepModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="secondname" ColumnName="secondname" />
                 <ScalarProperty Name="date_register" ColumnName="date_register" />
+                <ScalarProperty Name="secondname" ColumnName="secondname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Variants">
             <EntityTypeMapping TypeName="DeepModel.Variant">
               <MappingFragment StoreEntitySet="Variants">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
                 <ScalarProperty Name="variant1" ColumnName="variant" />
+                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
