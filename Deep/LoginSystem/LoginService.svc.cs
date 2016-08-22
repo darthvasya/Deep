@@ -11,9 +11,10 @@ namespace Deep.LoginSystem
     // NOTE: In order to launch WCF Test Client for testing this service, please select LoginService.svc or LoginService.svc.cs at the Solution Explorer and start debugging.
     public class LoginService : ILoginService
     {
-        public string getTest(Login Vasya)
+        public string getTest(Login login)
         {
-            return "Pasw: " + Vasya.password;
+            int x = 2;
+            return "Pasw: " + login.password;
         }
     }
 }
