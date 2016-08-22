@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.Text;
+
+namespace Deep.LoginSystem
+{
+    
+    [ServiceContract]
+    public interface ILoginService
+    {
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
+                                    RequestFormat = WebMessageFormat.Json,
+                                    ResponseFormat = WebMessageFormat.Json,
+                                    UriTemplate = "Test/")]
+        string getTest(Login vasya);
+       
+    }
+}

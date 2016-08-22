@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Auth\AuthService.svc" />
+    <Content Include="LoginSystem\LoginService.svc" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
@@ -96,6 +97,11 @@
       <DependentUpon>AuthService.svc</DependentUpon>
     </Compile>
     <Compile Include="Auth\IAuthService.cs" />
+    <Compile Include="LoginSystem\ILoginService.cs" />
+    <Compile Include="LoginSystem\Login.cs" />
+    <Compile Include="LoginSystem\LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

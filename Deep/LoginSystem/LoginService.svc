@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Deep.LoginSystem.LoginService" CodeBehind="LoginService.svc.cs" %>
