@@ -13,7 +13,7 @@ namespace Deep.LoginSystem
 
         private Users getUserByUsername(String username)
         {
-            return dbContext.Users.Where(p => p.username == username).First();
+            return dbContext.Users.Where(p => p.username == username).FirstOrDefault();
         }
 
         public bool login(Login login)
@@ -32,6 +32,7 @@ namespace Deep.LoginSystem
             if (tempUser == null)
             {
                 dbContext.Users.Add(user);
+                dbContext.SaveChanges();
                 return true;
             }
             return false;            
