@@ -16,8 +16,15 @@ namespace Deep.LoginSystem
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
-                                    UriTemplate = "Test/")]
-        string getTest(Login vasya);
+                                    UriTemplate = "register/")]
+        bool register(Users user);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
+                                    RequestFormat = WebMessageFormat.Json,
+                                    ResponseFormat = WebMessageFormat.Json,
+                                    UriTemplate = "login/")]
+        bool login(Login login);
        
     }
 }

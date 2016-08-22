@@ -7,14 +7,34 @@ using System.Text;
 
 namespace Deep.LoginSystem
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "LoginService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select LoginService.svc or LoginService.svc.cs at the Solution Explorer and start debugging.
     public class LoginService : ILoginService
     {
-        public string getTest(Login login)
+        DB_A0BEB4_deepEntities dbContext = new DB_A0BEB4_deepEntities();
+
+        private Users getUserByUsername(String username)
         {
-            int x = 2;
-            return "Pasw: " + login.password;
+            return dbContext.Users.Where(p => p.username == username).First();
+        }
+
+        public bool login(Login login)
+        {
+            Users user = getUserByUsername(login.username);
+            if ((user != null) && (user.password == login.password))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool register(Users user)
+        {
+            Users tempUser = getUserByUsername(user.username);
+            if (tempUser == null)
+            {
+                dbContext.Users.Add(user);
+                return true;
+            }
+            return false;            
         }
     }
 }

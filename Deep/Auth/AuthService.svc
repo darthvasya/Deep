@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Deep.Auth.AuthService" CodeBehind="AuthService.svc.cs" %>
