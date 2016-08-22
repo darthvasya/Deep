@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 
@@ -20,11 +21,18 @@ namespace Deep.LoginSystem
         bool register(Users user);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
+        [WebInvoke(Method = "*", BodyStyle = WebMessageBodyStyle.Bare,
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
                                     UriTemplate = "login/")]
         bool login(Login login);
-       
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Test/")]
+        string getTest(Login vasya);
+
     }
 }

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Activation;
 using System.Text;
 
 namespace Deep.LoginSystem
 {
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class LoginService : ILoginService
     {
         DB_A0BEB4_deepEntities dbContext = new DB_A0BEB4_deepEntities();
 
-        private Users getUserByUsername(String username)
+        private Users getUserByUsername(string username)
         {
-            return dbContext.Users.Where(p => p.username == username).First();
+            return dbContext.Users.Where(p => p.username == username).FirstOrDefault();
         }
 
         public bool login(Login login)
@@ -32,9 +34,15 @@ namespace Deep.LoginSystem
             if (tempUser == null)
             {
                 dbContext.Users.Add(user);
+                dbContext.SaveChanges();
                 return true;
             }
             return false;            
+        }
+
+        public string getTest(Login vasya)
+        {
+            return "sfda" + vasya.password;
         }
     }
 }
