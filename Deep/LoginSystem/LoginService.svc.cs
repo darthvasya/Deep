@@ -39,10 +39,5 @@ namespace Deep.LoginSystem
             }
             return false;            
         }
-
-        public string getTest(Login vasya)
-        {
-            return "sfda" + vasya.password;
-        }
     }
 }

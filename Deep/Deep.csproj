@@ -126,6 +126,7 @@
     <Compile Include="ProjectManagementSystem\ProjectService.svc.cs">
       <DependentUpon>ProjectService.svc</DependentUpon>
     </Compile>
+    <Compile Include="ProjectManagementSystem\ProjectWrapper.cs" />
     <Compile Include="Projects.cs">
       <DependentUpon>DeepModel.tt</DependentUpon>
     </Compile>

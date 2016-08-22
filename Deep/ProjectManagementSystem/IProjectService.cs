@@ -18,11 +18,12 @@ namespace Deep.ProjectManagementSystem
                                     UriTemplate = "projects/add/")]
         bool addProject(Projects project);
 
+        //name and count of people which is asked
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,
                                    ResponseFormat = WebMessageFormat.Json,
                                    UriTemplate = "projects/")]
-        List<Projects> getProjectList();
+        List<ProjectWrapper> getProjectList();
 
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,

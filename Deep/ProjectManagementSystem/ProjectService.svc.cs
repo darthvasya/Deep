@@ -24,9 +24,17 @@ namespace Deep.ProjectManagementSystem
             return true;
         }
 
-        public List<Projects> getProjectList()
+        public List<ProjectWrapper> getProjectList()
         {
-            return dbContext.Projects.ToList();
+            List<Projects> projects = dbContext.Projects.ToList();
+            List<ProjectWrapper> result = new List<ProjectWrapper>();
+            foreach(Projects project in projects){
+                ProjectWrapper projectWrapper = new ProjectWrapper();
+                projectWrapper.id = project.id;
+                projectWrapper.name = project.name;
+                projectWrapper.peopleCount = dbContext.Surveys.ToList().Count;
+            }
+            return result;
         }
 
         public Projects getProjectById(string id)
