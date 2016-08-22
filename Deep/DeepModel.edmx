@@ -75,9 +75,9 @@
 предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Users" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="id" />
             <PropertyRef Name="username" />
             <PropertyRef Name="password" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -185,69 +185,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_A0BEB4_deepModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AccessTokens">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="access_token" />
-            <PropertyRef Name="refresh_token" />
-            <PropertyRef Name="last_refresh" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="access_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="refresh_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="last_refresh" Type="DateTime" Nullable="false" Precision="7" />
-        </EntityType>
-        <EntityType Name="Answers">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="id_survey" />
-            <PropertyRef Name="id_question" />
-            <PropertyRef Name="id_variants" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_survey" Type="Int32" Nullable="false" />
-          <Property Name="id_question" Type="Int32" Nullable="false" />
-          <Property Name="id_variants" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Questions">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="question" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Surveys">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="id_project" />
-            <PropertyRef Name="name_people" />
-            <PropertyRef Name="age" />
-            <PropertyRef Name="profession" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_project" Type="Int32" Nullable="false" />
-          <Property Name="name_people" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="age" Type="Int32" Nullable="false" />
-          <Property Name="profession" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Variants">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="id_question" />
-            <PropertyRef Name="variant" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_question" Type="Int32" Nullable="false" />
-          <Property Name="variant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="DB_A0BEB4_deepEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AccessTokens" EntityType="Self.AccessTokens" />
-          <EntitySet Name="Answers" EntityType="Self.Answers" />
-          <EntitySet Name="Questions" EntityType="Self.Questions" />
-          <EntitySet Name="Surveys" EntityType="Self.Surveys" />
-          <EntitySet Name="Variants" EntityType="Self.Variants" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -278,18 +216,37 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="Users" EntityType="DB_A0BEB4_deepModel.Users" />
+          <EntitySet Name="AccessTokens" EntityType="DB_A0BEB4_deepModel.AccessTokens" />
+          <EntitySet Name="Answers" EntityType="DB_A0BEB4_deepModel.Answers" />
           <EntitySet Name="Projects" EntityType="DB_A0BEB4_deepModel.Projects" />
-        </EntityContainer>
-        <EntityType Name="Users">
+          <EntitySet Name="Questions" EntityType="DB_A0BEB4_deepModel.Questions" />
+          <EntitySet Name="Surveys" EntityType="DB_A0BEB4_deepModel.Surveys" />
+          <EntitySet Name="Users" EntityType="DB_A0BEB4_deepModel.Users" />
+          <EntitySet Name="Variants" EntityType="DB_A0BEB4_deepModel.Variants" />
+          </EntityContainer>
+        <EntityType Name="AccessTokens">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="username" />
-            <PropertyRef Name="password" />
+            <PropertyRef Name="access_token" />
+            <PropertyRef Name="refresh_token" />
+            <PropertyRef Name="last_refresh" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="access_token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="refresh_token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="last_refresh" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_survey" />
+            <PropertyRef Name="id_question" />
+            <PropertyRef Name="id_variants" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_survey" Type="Int32" Nullable="false" />
+          <Property Name="id_question" Type="Int32" Nullable="false" />
+          <Property Name="id_variants" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -300,61 +257,55 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="question" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="question" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Surveys">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_project" />
+            <PropertyRef Name="name_people" />
+            <PropertyRef Name="age" />
+            <PropertyRef Name="profession" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_project" Type="Int32" Nullable="false" />
+          <Property Name="name_people" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="profession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="username" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Variants">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_question" />
+            <PropertyRef Name="variant" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_question" Type="Int32" Nullable="false" />
+          <Property Name="variant" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище DB_A0BEB4_deepModelContainer" CdmEntityContainer="DB_A0BEB4_deepEntities">
-          <EntitySetMapping Name="AccessTokens">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.AccessTokens">
-              <MappingFragment StoreEntitySet="AccessTokens">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="access_token" ColumnName="access_token" />
-                <ScalarProperty Name="refresh_token" ColumnName="refresh_token" />
-                <ScalarProperty Name="last_refresh" ColumnName="last_refresh" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Answers">
-              <MappingFragment StoreEntitySet="Answers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_survey" ColumnName="id_survey" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
-                <ScalarProperty Name="id_variants" ColumnName="id_variants" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Questions">
-              <MappingFragment StoreEntitySet="Questions">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="question" ColumnName="question" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Surveys">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Surveys">
-              <MappingFragment StoreEntitySet="Surveys">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_project" ColumnName="id_project" />
-                <ScalarProperty Name="name_people" ColumnName="name_people" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="profession" ColumnName="profession" />
-                <ScalarProperty Name="description" ColumnName="description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Variants">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Variants">
-              <MappingFragment StoreEntitySet="Variants">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
-                <ScalarProperty Name="variant" ColumnName="variant" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_dropdiagram" />
@@ -362,11 +313,22 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_upgraddiagrams" />
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
+          <EntitySetMapping Name="AccessTokens">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.AccessTokens">
+              <MappingFragment StoreEntitySet="AccessTokens">
+                <ScalarProperty Name="last_refresh" ColumnName="last_refresh" />
+                <ScalarProperty Name="refresh_token" ColumnName="refresh_token" />
+                <ScalarProperty Name="access_token" ColumnName="access_token" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Answers">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="id_variants" ColumnName="id_variants" />
+                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="id_survey" ColumnName="id_survey" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -380,7 +342,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Questions">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surveys">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Surveys">
+              <MappingFragment StoreEntitySet="Surveys">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="profession" ColumnName="profession" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="name_people" ColumnName="name_people" />
+                <ScalarProperty Name="id_project" ColumnName="id_project" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variants">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Variants">
+              <MappingFragment StoreEntitySet="Variants">
+                <ScalarProperty Name="variant" ColumnName="variant" />
+                <ScalarProperty Name="id_question" ColumnName="id_question" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

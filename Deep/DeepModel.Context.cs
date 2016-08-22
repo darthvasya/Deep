@@ -29,11 +29,11 @@ namespace Deep
     
         public virtual DbSet<AccessTokens> AccessTokens { get; set; }
         public virtual DbSet<Answers> Answers { get; set; }
+        public virtual DbSet<Projects> Projects { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
         public virtual DbSet<Surveys> Surveys { get; set; }
-        public virtual DbSet<Variants> Variants { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<Variants> Variants { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
