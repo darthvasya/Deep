@@ -1,12 +1,5 @@
-//------------------------------------------------------------------------------
-// <copyright file="WebDataService.svc.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Data.Services;
-using System.Data.Services.Common;
 using System.Linq;
 using System.ServiceModel.Web;
 using System.Web;
@@ -20,9 +13,17 @@ namespace Deep.ProjectManagementSystem
 
         public bool addProject(Project project)
         {
-            dbContext.Project.Add(project);
-            dbContext.SaveChanges();
-            return true;
+            try
+            {
+                dbContext.Project.Add(project);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public List<ProjectWrapper> getProjectList()
@@ -41,7 +42,7 @@ namespace Deep.ProjectManagementSystem
 
         public Project getProjectById(string id)
         {
-            Project project;
+            Project project = new Project();
             try
             {
                 int intId = Int32.Parse(id);
@@ -51,7 +52,7 @@ namespace Deep.ProjectManagementSystem
             {
                 project = null;
             }
-            return null;
+            return project;
         }
 
         private List<QuestionWrapperWithVariants> getQuestionList(int p_id)
