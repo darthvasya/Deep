@@ -1,31 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Activation;
-using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
+using System.ServiceModel;
+using System.ServiceModel.Web;
 
-namespace Deep.LoginSystem
+
+namespace Deep.QuestionManagementSystem
 {
-    
     [ServiceContract]
-    public interface ILoginService
+    interface IQuestionService
     {
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
-                                    UriTemplate = "register/")]
-        bool register(User user);
+                                    UriTemplate = "projects/{p_id}/questions/add/")]
+        bool addQuestionToProject(Question question, string p_id);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
-                                    UriTemplate = "login/")]
-        bool login(Login login);
-
+                                    UriTemplate = "projects/{p_id}/questions/{q_id}/variants/add")]
+        bool addVariantToQuestion(Variant variant, string p_id, string q_id);
     }
 }

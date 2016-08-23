@@ -16,19 +16,25 @@ namespace Deep.ProjectManagementSystem
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
                                     UriTemplate = "projects/add/")]
-        bool addProject(Projects project);
+        bool addProject(Project project);
 
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,
                                    ResponseFormat = WebMessageFormat.Json,
                                    UriTemplate = "projects/")]
-        List<Projects> getProjectList();
+        List<ProjectWrapper> getProjectList();
 
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,
                                    ResponseFormat = WebMessageFormat.Json,
                                    UriTemplate = "projects/{id}")]
-        Projects getProjectById(string id);
+        Project getProjectById(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,
+                                   ResponseFormat = WebMessageFormat.Json,
+                                   UriTemplate = "projects/{id}/questions/")]
+        ProjectWrapperWithQuestions getProjectWithQuestionsById(string id);
 
 
 

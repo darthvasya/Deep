@@ -5,181 +5,127 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище DB_A0BEB4_deepModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.AccessTokens" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="AccessTokens">
+        <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="access_token" />
-            <PropertyRef Name="refresh_token" />
-            <PropertyRef Name="last_refresh" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="access_token" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="refresh_token" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="last_refresh" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="survey_id" Type="int" Nullable="false" />
+          <Property Name="variant_id" Type="int" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Answers" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Answers">
+        <EntityType Name="Project">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_survey" />
-            <PropertyRef Name="id_question" />
-            <PropertyRef Name="id_variants" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="id_survey" Type="int" Nullable="false" />
-          <Property Name="id_question" Type="int" Nullable="false" />
-          <Property Name="id_variants" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Projects" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Projects">
+        <EntityType Name="Question">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="description" Type="text" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Questions" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Questions">
+        <EntityType Name="Survey">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="question" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="question" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Surveys" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Surveys">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="id_project" />
-            <PropertyRef Name="name_people" />
-            <PropertyRef Name="age" />
-            <PropertyRef Name="profession" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="id_project" Type="int" Nullable="false" />
-          <Property Name="name_people" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="age" Type="int" Nullable="false" />
-          <Property Name="profession" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="description" Type="text" />
+          <Property Name="profession" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Users" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="username" />
-            <PropertyRef Name="password" />
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "DB_A0BEB4_deep.dbo.Variants" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
-        <EntityType Name="Variants">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_question" />
-            <PropertyRef Name="variant" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="id_question" Type="int" Nullable="false" />
-          <Property Name="variant" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityType Name="Variant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question_id" Type="int" Nullable="false" />
+          <Property Name="text" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="ProjectFK">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QuestionFK">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SurveyFK">
+          <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="survey_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VariantFK">
+          <End Role="Variant" Type="Self.Variant" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="variant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище DB_A0BEB4_deepModelContainer">
-          <EntitySet Name="AccessTokens" EntityType="Self.AccessTokens" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [AccessTokens].[id] AS [id], 
-    [AccessTokens].[access_token] AS [access_token], 
-    [AccessTokens].[refresh_token] AS [refresh_token], 
-    [AccessTokens].[last_refresh] AS [last_refresh]
-    FROM [dbo].[AccessTokens] AS [AccessTokens]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Answers" EntityType="Self.Answers" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Answers].[id] AS [id], 
-    [Answers].[id_survey] AS [id_survey], 
-    [Answers].[id_question] AS [id_question], 
-    [Answers].[id_variants] AS [id_variants]
-    FROM [dbo].[Answers] AS [Answers]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Projects" EntityType="Self.Projects" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Projects].[id] AS [id], 
-    [Projects].[name] AS [name], 
-    [Projects].[description] AS [description]
-    FROM [dbo].[Projects] AS [Projects]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Questions" EntityType="Self.Questions" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Questions].[id] AS [id], 
-    [Questions].[question] AS [question]
-    FROM [dbo].[Questions] AS [Questions]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Surveys" EntityType="Self.Surveys" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Surveys].[id] AS [id], 
-    [Surveys].[id_project] AS [id_project], 
-    [Surveys].[name_people] AS [name_people], 
-    [Surveys].[age] AS [age], 
-    [Surveys].[profession] AS [profession], 
-    [Surveys].[description] AS [description]
-    FROM [dbo].[Surveys] AS [Surveys]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Users].[id] AS [id], 
-    [Users].[username] AS [username], 
-    [Users].[password] AS [password]
-    FROM [dbo].[Users] AS [Users]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Variants" EntityType="Self.Variants" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Variants].[id] AS [id], 
-    [Variants].[id_question] AS [id_question], 
-    [Variants].[variant] AS [variant]
-    FROM [dbo].[Variants] AS [Variants]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variant" EntityType="Self.Variant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ProjectFK" Association="Self.ProjectFK">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="QuestionFK" Association="Self.QuestionFK">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Variant" EntitySet="Variant" />
+          </AssociationSet>
+          <AssociationSet Name="SurveyFK" Association="Self.SurveyFK">
+            <End Role="Survey" EntitySet="Survey" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="VariantFK" Association="Self.VariantFK">
+            <End Role="Variant" EntitySet="Variant" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -216,171 +162,198 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="AccessTokens" EntityType="DB_A0BEB4_deepModel.AccessTokens" />
-          <EntitySet Name="Answers" EntityType="DB_A0BEB4_deepModel.Answers" />
-          <EntitySet Name="Projects" EntityType="DB_A0BEB4_deepModel.Projects" />
-          <EntitySet Name="Questions" EntityType="DB_A0BEB4_deepModel.Questions" />
-          <EntitySet Name="Surveys" EntityType="DB_A0BEB4_deepModel.Surveys" />
-          <EntitySet Name="Users" EntityType="DB_A0BEB4_deepModel.Users" />
-          <EntitySet Name="Variants" EntityType="DB_A0BEB4_deepModel.Variants" />
+          <EntitySet Name="Answer" EntityType="DB_A0BEB4_deepModel.Answer" />
+          <EntitySet Name="Project" EntityType="DB_A0BEB4_deepModel.Project" />
+          <EntitySet Name="Question" EntityType="DB_A0BEB4_deepModel.Question" />
+          <EntitySet Name="Survey" EntityType="DB_A0BEB4_deepModel.Survey" />
+          <EntitySet Name="User" EntityType="DB_A0BEB4_deepModel.User" />
+          <EntitySet Name="Variant" EntityType="DB_A0BEB4_deepModel.Variant" />
+          <AssociationSet Name="SurveyFK" Association="DB_A0BEB4_deepModel.SurveyFK">
+            <End Role="Survey" EntitySet="Survey" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="VariantFK" Association="DB_A0BEB4_deepModel.VariantFK">
+            <End Role="Variant" EntitySet="Variant" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectFK" Association="DB_A0BEB4_deepModel.ProjectFK">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="QuestionFK" Association="DB_A0BEB4_deepModel.QuestionFK">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Variant" EntitySet="Variant" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="AccessTokens">
+        <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="access_token" />
-            <PropertyRef Name="refresh_token" />
-            <PropertyRef Name="last_refresh" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="access_token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="refresh_token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="last_refresh" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="survey_id" Type="Int32" Nullable="false" />
+          <Property Name="variant_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Survey" Relationship="DB_A0BEB4_deepModel.SurveyFK" FromRole="Answer" ToRole="Survey" />
+          <NavigationProperty Name="Variant" Relationship="DB_A0BEB4_deepModel.VariantFK" FromRole="Answer" ToRole="Variant" />
         </EntityType>
-        <EntityType Name="Answers">
+        <EntityType Name="Project">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_survey" />
-            <PropertyRef Name="id_question" />
-            <PropertyRef Name="id_variants" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_survey" Type="Int32" Nullable="false" />
-          <Property Name="id_question" Type="Int32" Nullable="false" />
-          <Property Name="id_variants" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Question" Relationship="DB_A0BEB4_deepModel.ProjectFK" FromRole="Project" ToRole="Question" />
         </EntityType>
-        <EntityType Name="Projects">
+        <EntityType Name="Question">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="DB_A0BEB4_deepModel.ProjectFK" FromRole="Question" ToRole="Project" />
+          <NavigationProperty Name="Variant" Relationship="DB_A0BEB4_deepModel.QuestionFK" FromRole="Question" ToRole="Variant" />
         </EntityType>
-        <EntityType Name="Questions">
+        <EntityType Name="Survey">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="question" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="question" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Surveys">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="id_project" />
-            <PropertyRef Name="name_people" />
-            <PropertyRef Name="age" />
-            <PropertyRef Name="profession" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_project" Type="Int32" Nullable="false" />
-          <Property Name="name_people" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="age" Type="Int32" Nullable="false" />
-          <Property Name="profession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="profession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Answer" Relationship="DB_A0BEB4_deepModel.SurveyFK" FromRole="Survey" ToRole="Answer" />
         </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="username" />
-            <PropertyRef Name="password" />
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Variants">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_question" />
-            <PropertyRef Name="variant" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_question" Type="Int32" Nullable="false" />
-          <Property Name="variant" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Variant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question_id" Type="Int32" Nullable="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Answer" Relationship="DB_A0BEB4_deepModel.VariantFK" FromRole="Variant" ToRole="Answer" />
+          <NavigationProperty Name="Question" Relationship="DB_A0BEB4_deepModel.QuestionFK" FromRole="Variant" ToRole="Question" />
+        </EntityType>
+        <Association Name="SurveyFK">
+          <End Type="DB_A0BEB4_deepModel.Survey" Role="Survey" Multiplicity="1" />
+          <End Type="DB_A0BEB4_deepModel.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Survey">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="survey_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VariantFK">
+          <End Type="DB_A0BEB4_deepModel.Variant" Role="Variant" Multiplicity="1" />
+          <End Type="DB_A0BEB4_deepModel.Answer" Role="Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="variant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectFK">
+          <End Type="DB_A0BEB4_deepModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="DB_A0BEB4_deepModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QuestionFK">
+          <End Type="DB_A0BEB4_deepModel.Question" Role="Question" Multiplicity="1" />
+          <End Type="DB_A0BEB4_deepModel.Variant" Role="Variant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Variant">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище DB_A0BEB4_deepModelContainer" CdmEntityContainer="DB_A0BEB4_deepEntities">
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DB_A0BEB4_deepModel.sp_upgraddiagrams" />
-          <EntitySetMapping Name="AccessTokens">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.AccessTokens">
-              <MappingFragment StoreEntitySet="AccessTokens">
-                <ScalarProperty Name="last_refresh" ColumnName="last_refresh" />
-                <ScalarProperty Name="refresh_token" ColumnName="refresh_token" />
-                <ScalarProperty Name="access_token" ColumnName="access_token" />
+          <EntitySetMapping Name="Answer">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="variant_id" ColumnName="variant_id" />
+                <ScalarProperty Name="survey_id" ColumnName="survey_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Answers">
-              <MappingFragment StoreEntitySet="Answers">
-                <ScalarProperty Name="id_variants" ColumnName="id_variants" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
-                <ScalarProperty Name="id_survey" ColumnName="id_survey" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Projects">
-              <MappingFragment StoreEntitySet="Projects">
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Project">
+              <MappingFragment StoreEntitySet="Project">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Questions">
-              <MappingFragment StoreEntitySet="Questions">
-                <ScalarProperty Name="question" ColumnName="question" />
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Surveys">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Surveys">
-              <MappingFragment StoreEntitySet="Surveys">
+          <EntitySetMapping Name="Survey">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Survey">
+              <MappingFragment StoreEntitySet="Survey">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="profession" ColumnName="profession" />
                 <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="name_people" ColumnName="name_people" />
-                <ScalarProperty Name="id_project" ColumnName="id_project" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Users">
-              <MappingFragment StoreEntitySet="Users">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.User">
+              <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Variants">
-            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Variants">
-              <MappingFragment StoreEntitySet="Variants">
-                <ScalarProperty Name="variant" ColumnName="variant" />
-                <ScalarProperty Name="id_question" ColumnName="id_question" />
+          <EntitySetMapping Name="Variant">
+            <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Variant">
+              <MappingFragment StoreEntitySet="Variant">
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

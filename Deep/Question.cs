@@ -12,13 +12,18 @@ namespace Deep
     using System;
     using System.Collections.Generic;
     
-    public partial class Surveys
+    public partial class Question
     {
+        public Question()
+        {
+            this.Variant = new HashSet<Variant>();
+        }
+    
         public int id { get; set; }
-        public int id_project { get; set; }
-        public string name_people { get; set; }
-        public int age { get; set; }
-        public string profession { get; set; }
-        public string description { get; set; }
+        public string text { get; set; }
+        public int project_id { get; set; }
+    
+        public virtual Project Project { get; set; }
+        public virtual ICollection<Variant> Variant { get; set; }
     }
 }

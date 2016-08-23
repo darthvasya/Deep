@@ -12,9 +12,13 @@ namespace Deep
     using System;
     using System.Collections.Generic;
     
-    public partial class Questions
+    public partial class Answer
     {
         public int id { get; set; }
-        public string question { get; set; }
+        public int survey_id { get; set; }
+        public int variant_id { get; set; }
+    
+        public virtual Survey Survey { get; set; }
+        public virtual Variant Variant { get; set; }
     }
 }
