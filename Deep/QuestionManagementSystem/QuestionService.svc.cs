@@ -34,11 +34,27 @@ namespace Deep.QuestionManagementSystem
                 variant.question_id = intQId;
                 dbContext.Variant.Add(variant);
                 dbContext.SaveChanges();
+                return true;
             }
             catch(Exception exc){
                 return false;
             }
-            return true;
+        }
+
+        public List<QuestionWrapperWithVariants> getQuestions(string p_id)
+        {
+            int p_id_int = Convert.ToInt32(p_id);
+            List<QuestionWrapperWithVariants> result = new List<QuestionWrapperWithVariants>();
+            List<Question> questions = dbContext.Question.Where(p => p.project_id == p_id_int).ToList();
+            foreach (Question question in questions)
+            {
+                QuestionWrapperWithVariants resultQuestion = new QuestionWrapperWithVariants();
+                resultQuestion.id = question.id;
+                resultQuestion.text = question.text;
+                resultQuestion.variantList = dbContext.Variant.Where(p => p.question_id == question.id).ToList();
+                result.Add(resultQuestion);
+            }
+            return result;
         }
     }
 }
