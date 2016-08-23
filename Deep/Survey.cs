@@ -12,11 +12,19 @@ namespace Deep
     using System;
     using System.Collections.Generic;
     
-    public partial class Answers
+    public partial class Survey
     {
+        public Survey()
+        {
+            this.Answer = new HashSet<Answer>();
+        }
+    
         public int id { get; set; }
-        public int id_survey { get; set; }
-        public int id_question { get; set; }
-        public int id_variants { get; set; }
+        public string name { get; set; }
+        public int age { get; set; }
+        public string profession { get; set; }
+        public string description { get; set; }
+    
+        public virtual ICollection<Answer> Answer { get; set; }
     }
 }

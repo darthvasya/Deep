@@ -12,7 +12,7 @@ namespace Deep
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class User
     {
         public int id { get; set; }
         public string username { get; set; }
