@@ -34,13 +34,13 @@ namespace Deep.ProjectManagementSystem
                 ProjectWrapper projectWrapper = new ProjectWrapper();
                 projectWrapper.id = project.id;
                 projectWrapper.name = project.name;
-                projectWrapper.peopleCount = dbContext.Survey.ToList().Count;
+                projectWrapper.peopleCount = dbContext.Survey.Where(p => p.project_id == project.id).ToList().Count;
                 result.Add(projectWrapper);
             }
             return result;
         }
 
-        public Project getProjectById(string id)
+        public Project getProject(string id)
         {
             Project project;
             try
@@ -81,7 +81,7 @@ namespace Deep.ProjectManagementSystem
                 result.id = project.id;
                 result.name = project.name;
                 result.description = project.description;
-                result.questionList = getQuestionList(intId);
+                result.questionList = null;//getQuestionList(intId);
             }
             catch
             {
@@ -97,6 +97,7 @@ namespace Deep.ProjectManagementSystem
             {
                 int id_int = Convert.ToInt32(id);
                 surveys = dbContext.Survey.Where(p => p.project_id == id_int).ToList();
+                surveys.Reverse();
                 return surveys;
             }
             catch
