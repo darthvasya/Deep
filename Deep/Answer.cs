@@ -17,8 +17,5 @@ namespace Deep
         public int id { get; set; }
         public int survey_id { get; set; }
         public int variant_id { get; set; }
-    
-        public virtual Survey Survey { get; set; }
-        public virtual Variant Variant { get; set; }
     }
 }

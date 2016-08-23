@@ -5,16 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f8186d9ea69a43dd88a9e20cd3bd7af7" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Answer" Width="1.5" PointX="7.5" PointY="0.875" />
-        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Project" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Question" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Survey" Width="1.5" PointX="5.25" PointY="3.875" />
-        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.User" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Variant" Width="1.5" PointX="5.25" PointY="0.875" />
-        <AssociationConnector Association="DB_A0BEB4_deepModel.SurveyFK" />
-        <AssociationConnector Association="DB_A0BEB4_deepModel.VariantFK" />
-        <AssociationConnector Association="DB_A0BEB4_deepModel.ProjectFK" />
-        <AssociationConnector Association="DB_A0BEB4_deepModel.QuestionFK" />
+        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Answer" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Project" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Question" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Survey" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.User" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A0BEB4_deepModel.Variant" Width="1.5" PointX="4.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

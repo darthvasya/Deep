@@ -27,7 +27,7 @@ namespace Deep.ProjectManagementSystem
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,
                                    ResponseFormat = WebMessageFormat.Json,
-                                   UriTemplate = "projects/{id}")]
+                                   UriTemplate = "projects/{id}/")]
         Project getProjectById(string id);
 
         [OperationContract]

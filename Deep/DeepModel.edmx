@@ -55,54 +55,6 @@
           <Property Name="question_id" Type="int" Nullable="false" />
           <Property Name="text" Type="text" Nullable="false" />
         </EntityType>
-        <Association Name="ProjectFK">
-          <End Role="Project" Type="Self.Project" Multiplicity="1" />
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="project_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="QuestionFK">
-          <End Role="Question" Type="Self.Question" Multiplicity="1" />
-          <End Role="Variant" Type="Self.Variant" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Question">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Variant">
-              <PropertyRef Name="question_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SurveyFK">
-          <End Role="Survey" Type="Self.Survey" Multiplicity="1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Survey">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="survey_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VariantFK">
-          <End Role="Variant" Type="Self.Variant" Multiplicity="1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Variant">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="variant_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище DB_A0BEB4_deepModelContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
@@ -110,22 +62,6 @@
           <EntitySet Name="Survey" EntityType="Self.Survey" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Variant" EntityType="Self.Variant" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="ProjectFK" Association="Self.ProjectFK">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Question" EntitySet="Question" />
-          </AssociationSet>
-          <AssociationSet Name="QuestionFK" Association="Self.QuestionFK">
-            <End Role="Question" EntitySet="Question" />
-            <End Role="Variant" EntitySet="Variant" />
-          </AssociationSet>
-          <AssociationSet Name="SurveyFK" Association="Self.SurveyFK">
-            <End Role="Survey" EntitySet="Survey" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
-          <AssociationSet Name="VariantFK" Association="Self.VariantFK">
-            <End Role="Variant" EntitySet="Variant" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -168,22 +104,6 @@
           <EntitySet Name="Survey" EntityType="DB_A0BEB4_deepModel.Survey" />
           <EntitySet Name="User" EntityType="DB_A0BEB4_deepModel.User" />
           <EntitySet Name="Variant" EntityType="DB_A0BEB4_deepModel.Variant" />
-          <AssociationSet Name="SurveyFK" Association="DB_A0BEB4_deepModel.SurveyFK">
-            <End Role="Survey" EntitySet="Survey" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
-          <AssociationSet Name="VariantFK" Association="DB_A0BEB4_deepModel.VariantFK">
-            <End Role="Variant" EntitySet="Variant" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
-          <AssociationSet Name="ProjectFK" Association="DB_A0BEB4_deepModel.ProjectFK">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Question" EntitySet="Question" />
-          </AssociationSet>
-          <AssociationSet Name="QuestionFK" Association="DB_A0BEB4_deepModel.QuestionFK">
-            <End Role="Question" EntitySet="Question" />
-            <End Role="Variant" EntitySet="Variant" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Answer">
           <Key>
@@ -192,8 +112,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="survey_id" Type="Int32" Nullable="false" />
           <Property Name="variant_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Survey" Relationship="DB_A0BEB4_deepModel.SurveyFK" FromRole="Answer" ToRole="Survey" />
-          <NavigationProperty Name="Variant" Relationship="DB_A0BEB4_deepModel.VariantFK" FromRole="Answer" ToRole="Variant" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -202,7 +120,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Question" Relationship="DB_A0BEB4_deepModel.ProjectFK" FromRole="Project" ToRole="Question" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -211,8 +128,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="project_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="DB_A0BEB4_deepModel.ProjectFK" FromRole="Question" ToRole="Project" />
-          <NavigationProperty Name="Variant" Relationship="DB_A0BEB4_deepModel.QuestionFK" FromRole="Question" ToRole="Variant" />
         </EntityType>
         <EntityType Name="Survey">
           <Key>
@@ -223,7 +138,6 @@
           <Property Name="age" Type="Int32" Nullable="false" />
           <Property Name="profession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Answer" Relationship="DB_A0BEB4_deepModel.SurveyFK" FromRole="Survey" ToRole="Answer" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -240,57 +154,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="question_id" Type="Int32" Nullable="false" />
           <Property Name="text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Answer" Relationship="DB_A0BEB4_deepModel.VariantFK" FromRole="Variant" ToRole="Answer" />
-          <NavigationProperty Name="Question" Relationship="DB_A0BEB4_deepModel.QuestionFK" FromRole="Variant" ToRole="Question" />
         </EntityType>
-        <Association Name="SurveyFK">
-          <End Type="DB_A0BEB4_deepModel.Survey" Role="Survey" Multiplicity="1" />
-          <End Type="DB_A0BEB4_deepModel.Answer" Role="Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Survey">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="survey_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VariantFK">
-          <End Type="DB_A0BEB4_deepModel.Variant" Role="Variant" Multiplicity="1" />
-          <End Type="DB_A0BEB4_deepModel.Answer" Role="Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Variant">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="variant_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProjectFK">
-          <End Type="DB_A0BEB4_deepModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="DB_A0BEB4_deepModel.Question" Role="Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="project_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="QuestionFK">
-          <End Type="DB_A0BEB4_deepModel.Question" Role="Question" Multiplicity="1" />
-          <End Type="DB_A0BEB4_deepModel.Variant" Role="Variant" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Question">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Variant">
-              <PropertyRef Name="question_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

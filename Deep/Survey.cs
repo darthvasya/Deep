@@ -14,17 +14,10 @@ namespace Deep
     
     public partial class Survey
     {
-        public Survey()
-        {
-            this.Answer = new HashSet<Answer>();
-        }
-    
         public int id { get; set; }
         public string name { get; set; }
         public int age { get; set; }
         public string profession { get; set; }
         public string description { get; set; }
-    
-        public virtual ICollection<Answer> Answer { get; set; }
     }
 }

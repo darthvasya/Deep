@@ -51,7 +51,7 @@ namespace Deep.ProjectManagementSystem
             {
                 project = null;
             }
-            return null;
+            return project;
         }
 
         private List<QuestionWrapperWithVariants> getQuestionList(int p_id)

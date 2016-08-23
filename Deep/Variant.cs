@@ -14,16 +14,8 @@ namespace Deep
     
     public partial class Variant
     {
-        public Variant()
-        {
-            this.Answer = new HashSet<Answer>();
-        }
-    
         public int id { get; set; }
         public int question_id { get; set; }
         public string text { get; set; }
-    
-        public virtual ICollection<Answer> Answer { get; set; }
-        public virtual Question Question { get; set; }
     }
 }

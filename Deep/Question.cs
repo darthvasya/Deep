@@ -14,16 +14,8 @@ namespace Deep
     
     public partial class Question
     {
-        public Question()
-        {
-            this.Variant = new HashSet<Variant>();
-        }
-    
         public int id { get; set; }
         public string text { get; set; }
         public int project_id { get; set; }
-    
-        public virtual Project Project { get; set; }
-        public virtual ICollection<Variant> Variant { get; set; }
     }
 }
