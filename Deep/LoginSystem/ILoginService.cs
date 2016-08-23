@@ -21,7 +21,7 @@ namespace Deep.LoginSystem
         bool register(Users user);
 
         [OperationContract]
-        [WebInvoke(Method = "*", BodyStyle = WebMessageBodyStyle.Bare,
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
                                     UriTemplate = "login/")]
