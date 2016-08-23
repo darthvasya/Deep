@@ -37,6 +37,7 @@ namespace Deep.ProjectManagementSystem
                 projectWrapper.peopleCount = dbContext.Survey.Where(p => p.project_id == project.id).ToList().Count;
                 result.Add(projectWrapper);
             }
+            result.Reverse();
             return result;
         }
 
