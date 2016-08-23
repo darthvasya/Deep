@@ -13,14 +13,14 @@ namespace Deep.LoginSystem
     {
         DB_A0BEB4_deepEntities dbContext = new DB_A0BEB4_deepEntities();
 
-        private Users getUserByUsername(string username)
+        private User getUserByUsername(string username)
         {
-            return dbContext.Users.Where(p => p.username == username).FirstOrDefault();
+            return dbContext.User.Where(p => p.username == username).FirstOrDefault();
         }
 
         public bool login(Login login)
         {
-            Users user = getUserByUsername(login.username);
+            User user = getUserByUsername(login.username);
             if ((user != null) && (user.password == login.password))
             {
                 return true;
@@ -28,21 +28,16 @@ namespace Deep.LoginSystem
             return false;
         }
 
-        public bool register(Users user)
+        public bool register(User user)
         {
-            Users tempUser = getUserByUsername(user.username);
+            User tempUser = getUserByUsername(user.username);
             if (tempUser == null)
             {
-                dbContext.Users.Add(user);
+                dbContext.User.Add(user);
                 dbContext.SaveChanges();
                 return true;
             }
             return false;            
-        }
-
-        public string getTest(Login vasya)
-        {
-            return "sfda" + vasya.password;
         }
     }
 }

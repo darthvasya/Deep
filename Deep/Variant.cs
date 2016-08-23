@@ -12,10 +12,18 @@ namespace Deep
     using System;
     using System.Collections.Generic;
     
-    public partial class Projects
+    public partial class Variant
     {
+        public Variant()
+        {
+            this.Answer = new HashSet<Answer>();
+        }
+    
         public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public int question_id { get; set; }
+        public string text { get; set; }
+    
+        public virtual ICollection<Answer> Answer { get; set; }
+        public virtual Question Question { get; set; }
     }
 }
