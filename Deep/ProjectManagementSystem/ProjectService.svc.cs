@@ -106,14 +106,13 @@ namespace Deep.ProjectManagementSystem
             }
         }
 
-        public Survey projectSurvey(string id, string id_s)
+        public Survey projectSurvey(string id_s)
         {
             Survey survey = new Survey();
             try
             {
-                int id_int = Convert.ToInt32(id);
                 int id_s_int = Convert.ToInt32(id_s);
-                survey = dbContext.Survey.Where(p => p.project_id == id_int).Where(p => p.id == id_s_int).FirstOrDefault();
+                survey = dbContext.Survey.Where(p => p.id == id_s_int).FirstOrDefault();
                 return survey;
             }
             catch

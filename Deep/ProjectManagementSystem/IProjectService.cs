@@ -45,8 +45,8 @@ namespace Deep.ProjectManagementSystem
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json,
                            ResponseFormat = WebMessageFormat.Json,
-                           UriTemplate = "projects/{id}/surveys/{id_s}")]
-        Survey projectSurvey(string id, string id_s);
+                           UriTemplate = "/surveys/{id_s}")]
+        Survey projectSurvey(string id_s);
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
