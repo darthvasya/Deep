@@ -42,15 +42,15 @@ namespace Deep.ProjectManagementSystem
 
         public Project getProjectById(string id)
         {
-            Project project = new Project();
+            Project project;
             try
             {
-                int intId = Int32.Parse(id);
-                project = dbContext.Project.Where(p => p.id == intId).FirstOrDefault();
+                int id_int = Convert.ToInt32(id);
+                project = dbContext.Project.Where(p => p.id == id_int).FirstOrDefault();
             }
             catch
             {
-                project = null;
+                return null;
             }
             return project;
         }
@@ -88,6 +88,56 @@ namespace Deep.ProjectManagementSystem
                 result = null;
             }
             return result;
+        }
+
+        public List<Survey> projectSurveys(string id)
+        {
+            List<Survey> surveys = new List<Survey>();
+            try
+            {
+                int id_int = Convert.ToInt32(id);
+                surveys = dbContext.Survey.Where(p => p.project_id == id_int).ToList();
+                return surveys;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Survey projectSurvey(string id, string id_s)
+        {
+            Survey survey = new Survey();
+            try
+            {
+                int id_int = Convert.ToInt32(id);
+                int id_s_int = Convert.ToInt32(id_s);
+                survey = dbContext.Survey.Where(p => p.project_id == id_int).Where(p => p.id == id_s_int).FirstOrDefault();
+                return survey;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Survey addSurvey(Survey survey)
+        {
+            try
+            {
+                if (survey == null)
+                    return null;
+                else
+                {
+                    dbContext.Survey.Add(survey);
+                    dbContext.SaveChanges();
+                }
+                return survey;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
