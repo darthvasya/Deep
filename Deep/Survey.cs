@@ -20,5 +20,6 @@ namespace Deep
         public string profession { get; set; }
         public string description { get; set; }
         public int project_id { get; set; }
+        public Nullable<bool> complete_ask { get; set; }
     }
 }
