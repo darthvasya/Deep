@@ -116,8 +116,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="survey_id" Type="Int32" Nullable="false" />
           <Property Name="variant_id" Type="Int32" Nullable="false" />
-          <Property Name="quest_id" Type="Int32" />
-          <Property Name="project_id" Type="Int32" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -144,8 +142,6 @@
           <Property Name="age" Type="Int32" Nullable="false" />
           <Property Name="profession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="project_id" Type="Int32" Nullable="false" />
-          <Property Name="complete_ask" Type="Boolean" />
         </EntityType>
         <EntityType Name="User">
           <Key>

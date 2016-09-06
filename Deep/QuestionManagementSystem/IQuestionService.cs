@@ -23,7 +23,7 @@ namespace Deep.QuestionManagementSystem
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Bare,
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
-                                    UriTemplate = "projects/{p_id}/questions/{q_id}/variants/add")]
+                                    UriTemplate = "projects/{p_id}/questions/{q_id}/variants/add/")]
         bool addVariantToQuestion(Variant variant, string p_id, string q_id);
 
         [OperationContract]

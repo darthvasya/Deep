@@ -17,7 +17,5 @@ namespace Deep
         public int id { get; set; }
         public int survey_id { get; set; }
         public int variant_id { get; set; }
-        public Nullable<int> quest_id { get; set; }
-        public Nullable<int> project_id { get; set; }
     }
 }
