@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище DB_A0BEB4_deepModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DB_A0BEB4_deepModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="id" />
@@ -12,6 +12,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="survey_id" Type="int" Nullable="false" />
           <Property Name="variant_id" Type="int" Nullable="false" />
+          <Property Name="quest_id" Type="int" />
+          <Property Name="project_id" Type="int" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -38,6 +40,8 @@
           <Property Name="age" Type="int" Nullable="false" />
           <Property Name="profession" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="complete_ask" Type="bit" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -164,6 +168,8 @@
           <EntitySetMapping Name="Answer">
             <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="quest_id" ColumnName="quest_id" />
                 <ScalarProperty Name="variant_id" ColumnName="variant_id" />
                 <ScalarProperty Name="survey_id" ColumnName="survey_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -191,6 +197,8 @@
           <EntitySetMapping Name="Survey">
             <EntityTypeMapping TypeName="DB_A0BEB4_deepModel.Survey">
               <MappingFragment StoreEntitySet="Survey">
+                <ScalarProperty Name="complete_ask" ColumnName="complete_ask" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="profession" ColumnName="profession" />
                 <ScalarProperty Name="age" ColumnName="age" />

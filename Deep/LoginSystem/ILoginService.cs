@@ -25,7 +25,7 @@ namespace Deep.LoginSystem
                                     RequestFormat = WebMessageFormat.Json,
                                     ResponseFormat = WebMessageFormat.Json,
                                     UriTemplate = "login/")]
-        bool login(Login login);
+        int login(Login login);
 
     }
 }
