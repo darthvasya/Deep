@@ -18,14 +18,14 @@ namespace Deep.LoginSystem
             return dbContext.User.Where(p => p.username == username).FirstOrDefault();
         }
 
-        public bool login(Login login)
+        public int login(Login login)
         {
             User user = getUserByUsername(login.username);
             if ((user != null) && (user.password == login.password))
             {
-                return true;
+                return user.id;
             }
-            return false;
+            return 0;
         }
 
         public bool register(User user)
